@@ -11,7 +11,6 @@ export const login_authentication = async (
 ) => {
   const username = req.body.username;
   const password = req.body.password;
-  console.log("login ---------------------------" + password);
   const user = await Usermodel.findOne({
     username: username,
   });

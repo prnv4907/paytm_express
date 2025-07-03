@@ -15,4 +15,10 @@ const UserSchema = z.object({
   password: z.string(),
   amount: z.number().default(0),
 });
-export { User, UserSchema };
+const UserSchma2 = z.object({
+  password: z.string(),
+  first_name: z.string().optional(),
+  last_name: z.string().optional(),
+  email: z.string().optional(),
+});
+export { User, UserSchema, UserSchma2 };

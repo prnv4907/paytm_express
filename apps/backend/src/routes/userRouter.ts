@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import express from "express";
 const route = express.Router();
 import { UserSchema } from "../zod/zod";
+import { UserSchma2 } from "../zod/zod";
 import { Usermodel } from "../db/db";
 import bcrypt from "bcrypt";
 import { username_check } from "../middleware/authentication";
@@ -72,6 +73,14 @@ route.get("/login", login_authentication, async (req, res) => {
     console.log("error while creating token" + err);
     res.status(500).send({
       message: "error while creating token" + err,
+    });
+  }
+});
+route.put("/update", async (req, res) => {
+  const validation = UserSchma2.safeParse(req.body);
+  if (!validation.success) {
+    res.status(401).send({
+      message: "invalid credentials",
     });
   }
 });
